@@ -7,6 +7,7 @@ import MyProfile from "./MyProfile";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import * as auth from "../utils/auth";
+import { setToken, getToken } from "../utils/token";
 import "./styles/App.css";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       .authorize(username, password)
       .then((data) => {
         if (data.jwt) {
+          setToken(data.jwt);
           setUserData(data.user);
           setIsLoggedIn(true);
           navigate("/ducks");
