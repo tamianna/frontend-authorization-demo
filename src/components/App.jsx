@@ -10,6 +10,7 @@ import * as auth from "../utils/auth";
 import "./styles/App.css";
 
 function App() {
+  const [userData, setUserData] = useState({ username: "", email: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -36,8 +37,12 @@ function App() {
     }
     auth
       .authorize(username, password)
-      .then((date) => {
-        console.log(date);
+      .then((data) => {
+        if (data.jwt) {
+          setUserData(data.user);
+          setIsLoggedIn(true);
+          navigate("/ducks");
+        }
       })
       .catch(console.error);
   };
