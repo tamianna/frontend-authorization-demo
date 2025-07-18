@@ -7,6 +7,7 @@ import MyProfile from "./MyProfile";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import * as auth from "../utils/auth";
+import * as api from "../utils/api";
 import { setToken, getToken } from "../utils/token";
 import "./styles/App.css";
 
@@ -56,7 +57,14 @@ function App() {
       return;
     }
 
-    //todo- handle JWT
+    api
+      .getUserInfo(jwt)
+      .then(({ username, email }) => {
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+        navigate("/ducks");
+      })
+      .catch(console.error);
   }, []);
 
   return (
