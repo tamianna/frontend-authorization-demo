@@ -30,6 +30,16 @@ function App() {
           </div>
         }
       />
+      <Route
+        path="*"
+        element={
+          isLoggedIn ? (
+          <Navigate to="/ducks" /> 
+          ) : (
+          <Navigate to="/login" />
+          )
+        }
+      />
     </Routes>
   );
 }
