@@ -115,9 +115,9 @@ function App() {
         path="*"
         element={
           isLoggedIn ? (
-          <Navigate to="/ducks" /> 
+          <Navigate to="/ducks" replace /> 
           ) : ( 
-          <Navigate to="/login" />
+          <Navigate to="/login" replace />
           )
         }
       />
