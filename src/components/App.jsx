@@ -30,6 +30,18 @@ function App() {
     }
   };
 
+  const handleLogin = ({ username, password }) => {
+    if (!username || !password) {
+      return;
+    }
+    auth
+      .authorize(username, password)
+      .then((date) => {
+        console.log(date);
+      })
+      .catch(console.error);
+  };
+
   return (
     <Routes>
       <Route
