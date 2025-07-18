@@ -16,6 +16,7 @@ import * as auth from "../utils/auth";
 import * as api from "../utils/api";
 import { setToken, getToken } from "../utils/token";
 import "./styles/App.css";
+import { set } from "mongoose";
 
 function App() {
   const [userData, setUserData] = useState({ username: "", email: "" });
@@ -79,7 +80,7 @@ function App() {
         path="/ducks"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <Ducks />
+            <Ducks setIsLoggedIn={setIsLoggedIn} />
           </ProtectedRoute>
         }
       />
@@ -87,7 +88,7 @@ function App() {
         path="/my-profile"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <MyProfile userData={userData} />
+            <MyProfile userData={userData} setIsLoggedIn={setIsLoggedIn} />
           </ProtectedRoute>
         }
       />
