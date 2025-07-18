@@ -16,7 +16,7 @@ export const register = (username, password, email) => {
 };
 
 export const authorize = (identifier, password) => {
-  return fetch(`${BASE_URL}/auth/local/`, {
+  return fetch(`${BASE_URL}/auth/local`, {
     method: "POST",
     headers: {
       Accept: "application/json",
