@@ -15,6 +15,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import * as auth from "../utils/auth";
 import * as api from "../utils/api";
 import { setToken, getToken } from "../utils/token";
+import AppContext from "../context/AppContext";
 import "./styles/App.css";
 import { set } from "mongoose";
 
@@ -75,6 +76,7 @@ function App() {
   }, []);
 
   return (
+    <AppContext.Provider value={{ isLoggedIn }}>
     <Routes>
       <Route
         path="/ducks"
@@ -123,6 +125,7 @@ function App() {
         }
       />
     </Routes>
+    </AppContext.Provider>
   );
 }
 
