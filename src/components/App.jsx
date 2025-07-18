@@ -17,7 +17,6 @@ import * as api from "../utils/api";
 import { setToken, getToken } from "../utils/token";
 import AppContext from "../context/AppContext";
 import "./styles/App.css";
-import { set } from "mongoose";
 
 function App() {
   const [userData, setUserData] = useState({ username: "", email: "" });
@@ -76,13 +75,13 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ isLoggedIn }}>
+    <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
     <Routes>
       <Route
         path="/ducks"
         element={
           <ProtectedRoute>
-            <Ducks setIsLoggedIn={setIsLoggedIn} />
+            <Ducks />
           </ProtectedRoute>
         }
       />
@@ -90,14 +89,14 @@ function App() {
         path="/my-profile"
         element={
           <ProtectedRoute>
-            <MyProfile userData={userData} setIsLoggedIn={setIsLoggedIn} />
+            <MyProfile userData={userData} />
           </ProtectedRoute>
         }
       />
       <Route
         path="/login"
         element={
-          <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+          <ProtectedRoute anonymous>
             <div className="loginContainer">
               <Login handleLogin={handleLogin} />
             </div>
@@ -107,7 +106,7 @@ function App() {
       <Route
         path="/register"
         element={
-          <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+          <ProtectedRoute anonymous>
             <div className="registerContainer">
               <Register handleRegistration={handleRegistration} />
             </div>
